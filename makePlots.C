@@ -12,7 +12,7 @@ void makePlots() {
 
     //TFile * fTraces = TFile::Open("/Users/afranken/PADME/ECAL_TemplateFitting/EventScreen2.5ns.root");
     TFile * fTraces = TFile::Open("/Users/afranken/PADME/ECAL_TemplateFitting/slimmed.root");
-		TFile * fPlots = TFile::Open("/Users/afranken/PADME/ECAL_TemplateFitting/plots.root", "RECREATE");
+    TFile * fPlots = TFile::Open("/Users/afranken/PADME/ECAL_TemplateFitting/plots.root", "RECREATE");
 
     TTree * tTraces = (TTree*)fTraces->Get("slimmed");
 
@@ -30,16 +30,16 @@ void makePlots() {
 
         tTraces->GetEntry(i);
 
-				TH1F * temp = new TH1F("temp", "temp", 1024, 0, 1023);
+        TH1F * temp = new TH1F("temp", "temp", 1024, 0, 1023);
 
-				for (int j = 0; j < 1024; j++) {
-								temp->SetBinContent(j+1, Samples[j]);
-				}
+        for (int j = 0; j < 1024; j++) {
+            temp->SetBinContent(j+1, Samples[j]);
+        }
 
-				fPlots->Write("temp");
-		}
+        fPlots->Write("temp");
+    }
 
-		fPlots->Close();
+    fPlots->Close();
     fTraces->Close();
 
     return;
